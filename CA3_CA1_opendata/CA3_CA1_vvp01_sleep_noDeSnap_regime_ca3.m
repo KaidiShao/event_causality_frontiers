@@ -1,14 +1,7 @@
 clear;
 close all;
 
-restoredefaultpath;
-% onedrive_path = 'D:\Kaidi\Onedrive\';%%%%%%%% MPI KYB DESKTOP %%%%%%%%
-onedrive_path = 'C:\Users\skd\OneDrive\'; %%%%%%%% DELL LAPTOP %%%%%%%%
-proj_path = strcat(onedrive_path,'\updated-desnap-with-causality\');
-addpath(genpath(proj_path));
-addpath(strcat(onedrive_path,'\util_functions\'));
-addpath(genpath(strcat(onedrive_path,'\Toolbox\eeglab10_2_5_8b\')));%%%%%%%%% FOR PSD ANALYSIS %%%%%%%%%
-
+path = '...\event_causality_frontiers\'; % change according to individual needs
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Data & channel information %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 data_path = strcat(proj_path,'opendata_hc3\matlab_data\');
 sess_name = 'vvp01_2006-4-9_18-43-47';
@@ -19,13 +12,12 @@ ca1_ch = [1:32]; % HERE FOR PGO IS LGN
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DEFINE TASKS TO BE ANALYZED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Params.Options.Detection = 1;
-Params.Options.DebiasedStats = 0;
 Params.Options.BIC = 1; % 0 for predefined orders, 1 for BIC for given snapshot
 Params.Options.PSD = 0;
 Params.Options.CausalAnlysis = 1;
 Params.Options.Bootstrap = 0;
 Params.Options.save_flag = 1;
-Params.Output.save_path = strcat(proj_path,'\opendata_hc3\saved_data\bic_test\');
+Params.Output.save_path = path;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LOAD DATA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 n_chpair = (ca3_ch(1)-1)*32+1; % channel pair counter 
