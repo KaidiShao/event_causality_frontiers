@@ -12,29 +12,55 @@ function Yt = get_Yt_window(OriSignal, winsize, morder)
 start_index = morder + 1;
 
 % Number of full windows that can be extracted
-num_windows = floor((T - morder) / winsize);
+num_windows = T - morder - winsize + 1; % number of valid windows
 
 % Preallocate output array
 Yt = zeros(dim * (morder + 1), num_windows, winsize);
 
 for w = 1:num_windows
     % Compute the time index of the first point in the current window
-    win_start = start_index + (w - 1) * winsize;
-    
+    win_start = start_index + (w - 1) * 1;
+
     for t = 1:winsize
         current_t = win_start + t - 1;
         if current_t > T
             break; % Prevent overrun (shouldn't happen if num_windows is correct)
         end
-        
+
         % Stack x(t), x(t-1), ..., x(t-morder)
         stacked = [];
         for lag = 0:morder
             stacked = [stacked; OriSignal(:, current_t - lag)];
         end
-        
+
         Yt(:, w, t) = stacked;
     end
 end
 
 end
+
+% function Yt = get_Yt_window(OriSignal, winsize, morder)
+% % OriSignal: original signal, size = dim x T
+% % winsize: window size (number of samples per window)
+% % morder: model order (number of lags)
+% 
+% [dim, T] = size(OriSignal);
+% n_win = T - morder - winsize + 1; % number of valid windows
+% Yt = zeros((morder + 1) * dim, n_win, winsize); % preallocate
+% 
+% for w = 1:n_win
+%     % The starting index of the current window
+%     idx_start = w + morder - 1;  % align with data where lags are available
+% 
+%     for t = 1:winsize
+%         % For each time point in the window, construct the lagged state
+%         current_idx = idx_start + t - 1;
+%         lagged_block = [];
+%         for l = morder:-1:0
+%             lagged_block = [lagged_block; OriSignal(:, current_idx - l)];
+%         end
+%         Yt(:, w, t) = lagged_block;
+%     end
+% end
+% 
+% end
