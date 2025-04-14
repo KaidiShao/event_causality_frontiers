@@ -1,8 +1,9 @@
 % adapted from MVGC toolbox by Kaidi Shao, 10.06.2018, MPI Biological Cybernetics
 % long signal instead of ensemble simulation
 clear;
+addpath(genpath('D:\Onedrive\event_causality_frontiers\'))
 
-path = '...\event_causality_frontiers\'; % change according to individual needs
+path = 'D:\Onedrive\event_causality_frontiers\'; % change according to individual needs
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Parameter settings for simulation %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Params.VAR.nvar = 2;         % number of variables
 Params.VAR.ntrials = 5000;   % number of trials

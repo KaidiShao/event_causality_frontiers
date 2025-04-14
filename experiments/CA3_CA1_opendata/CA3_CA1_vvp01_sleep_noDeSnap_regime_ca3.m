@@ -56,7 +56,7 @@ Params.Detection.remove_artif = 0;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Params.CausalParams.old_version = 0; % old version or new version
 Params.CausalParams.diag_flag = 0;
-Params.CausalParams.ref_time = 1:200;
+Params.CausalParams.ref_time = 1:20;
 Params.CausalParams.estim_mode = 'OLS';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Params.MonteC_Params.L = Params.Detection.L_extract;
